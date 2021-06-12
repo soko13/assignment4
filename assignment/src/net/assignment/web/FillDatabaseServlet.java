@@ -27,32 +27,6 @@ public class FillDatabaseServlet extends HttpServlet{
 			}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace(); }
-		
-	
-	/*
-	
-	private static final long serialVersionUID = 1L; 
-	
-	private FillDatabaseDAO fillDatabaseDAO; 
-	
-	public void init() {
-		fillDatabaseDAO = new FillDatabaseDAO();
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-
-	*/
-	/*try {
-		if(FillDatabaseDAO.fillDatabase(fillDatabaseDAO)) {
-			response.sendRedirect("updatesuccess.jsp");
-	} 	else {
-			response.sendRedirect("updatefail.jsp");
-		
-		}
-	} 	catch (ClassNotFoundException e) {
-			e.printStackTrace();
-	}*/
-}
 }
 

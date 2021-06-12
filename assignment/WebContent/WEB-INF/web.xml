@@ -1,0 +1,31 @@
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+<display-name>Assignment 4 - SQL injections</display-name>
+<welcome-file-list>
+<welcome-file>login.jsp</welcome-file>
+</welcome-file-list>
+
+<servlet>
+<servlet-name>unsafeLoginServlet</servlet-name>
+<servlet-class>net.assignment.web.UnsafeLoginServlet</servlet-class>
+</servlet>
+
+<servlet>
+<servlet-name>safeLoginServlet</servlet-name>
+<servlet-class>net.assignment.web.SafeLoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>unsafeLoginServlet</servlet-name>
+<url-pattern>/unsafeloginservlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+<servlet-name>safeLoginServlet</servlet-name>
+<url-pattern>/safeloginservlet</url-pattern>
+</servlet-mapping>
+
+</web-app>

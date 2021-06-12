@@ -23,12 +23,20 @@
 	button:hover {background-color:#4282D3;}
 	.showdb, .filldb {background-color:#6997D3;color:white;width:40%;margin-top:3px;}
 	.btm {font-size:13px; text-align: center; padding-top:8px; padding-bottom:5px; line-heigt:80%;}
+	table, th {border: 1px solid black; border-collapse: collapse;}
+	
 </style>
 </head>
 <body>
 <form action="login.jsp">
     <div class="container" method="post">
-    	<p style="font-size:25px; text-align:center; font-weight:bold;">Database update successful!</p>
+    	<table>
+    	 <th>Username</th>
+    	 <th>Password</th>
+    	 <th>PhoneNumber</th>
+    	 <th>AdressStreet</th>
+    	 <th>AdressCity</th>
+    	</table>
     	<button type="submit" class="backtologin">Go back to login</button>
   	
   	<div class="btm">

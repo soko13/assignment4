@@ -14,24 +14,19 @@ public static boolean validate(LoginBean loginBean) throws ClassNotFoundExceptio
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		
-// Safe connection using prepared statements and parameterized queries
+// Safe connection using prepared statements and parameterized queries, we also close connection immediately;
 		
 		try (
 				Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=assignment4","assignment","assignment")) {
 				PreparedStatement ps = con.prepareStatement(
 					"select * from dbo.users where username=? and password=?"); {
-			ps.setString(1, loginBean.getUsername());
-			ps.setString(2, loginBean.getPassword());
+						ps.setString(1, loginBean.getUsername());
+						ps.setString(2, loginBean.getPassword());
 			
-			System.out.println(ps);
-			ResultSet rs = ps.executeQuery();
-			status = rs.next();
-			while ( rs.next() ) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                System.out.println(username);
-                System.out.println(password);
-            }
+						System.out.println(ps);
+						ResultSet rs = ps.executeQuery();
+						status = rs.next();
+						con.close();
 	}
 				}
 		catch (Exception e) {
@@ -41,8 +36,7 @@ public static boolean validate(LoginBean loginBean) throws ClassNotFoundExceptio
 		
 		return status;
 
-	}
-	
+	}	
 } 
 
 

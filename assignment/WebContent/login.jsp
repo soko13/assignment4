@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Assignment 4 - SQL injection</title>
+<title>Assignment 4 - SQL injections</title>
 <style type="text/css">
 	body {font-family: Tahoma, sans-serif; padding: 40px 0;}
 	.container {padding: 10px 16px;}

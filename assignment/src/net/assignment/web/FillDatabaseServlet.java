@@ -4,7 +4,6 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import net.assignment.bean.*;
 import net.assignment.database.*;
 
 public class FillDatabaseServlet extends HttpServlet{

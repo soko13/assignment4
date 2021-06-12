@@ -3,7 +3,7 @@ package net.assignment.database;
 import java.sql.*;
 import net.assignment.bean.*;
 
-// To make this login unsafe, we use simple queries instead of prepared statements with parameterized queries. 
+// To make this login unsafe, we use simple queries instead of prepared statements with parameterized queries. The connection remains open. 
 
 public class UnsafeLoginDAO {
 	

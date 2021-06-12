@@ -2,16 +2,13 @@ package net.assignment.web;
 
 import java.io.*;
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import net.assignment.bean.*;
 import net.assignment.database.*;
 
-@WebServlet("/unsafelogin")
 public class UnsafeLoginServlet extends HttpServlet {
 	
-	private static final long UID = 1;
 	private UnsafeLoginDAO unsafeLoginDAO; 
 	
 	public void init() {

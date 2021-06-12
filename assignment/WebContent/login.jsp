@@ -23,25 +23,30 @@
 </style>
 <script type="text/javascript">
             function callUnsafeLoginServlet() {
-                document.forms[0].action = "unsafeloginservlet";
+                document.forms[0].action = "unsafelogin";
                 document.forms[0].submit();
             }
             
             function callSafeLoginServlet() {
-            	document.forms[0].action = "safeloginservlet";
+            	document.forms[0].action = "safelogin";
+            	document.forms[0].submit();
+            }
+            
+            function callFillDbServlet() {
+            	document.forms[0].action = "filldatabase";
             	document.forms[0].submit();
             }
         </script>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/login" method="post">
+<form method="post">
 	<div class="container">
 		<p style="font-weight: bold; text-align: center; font-size:20px;">Assignment 4 - SQL Injections</p>
     	<label for="username"><b>Username</b></label>
     	<input type="text" placeholder="Enter Username" name="username" required>
 
     	<label for="password"><b>Password</b></label>
-    	<input type="password" placeholder="Enter Password" name="password" required>
+    	<input type="text" placeholder="Enter Password" name="password" required>
 
     	<button type="submit" onclick="callUnsafeLoginServlet()" name="unsafelogin">Unsafe Login</button>
     	<button type="submit" onclick="callSafeLoginServlet()" name="safelogin">Safe Login</button>
@@ -49,7 +54,7 @@
     
     <div class="container">
     	<button type="button" class="showdb">Show data</button>
-    	<button type="button" class="filldb" style="float:right;">Fill database</button>
+    	<button type="button" class="filldb" style="float:right;" onclick="callFillDbServlet()">Fill database</button>
   	</div>
   	
   	<div class="container btm">

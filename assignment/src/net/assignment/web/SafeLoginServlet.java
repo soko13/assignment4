@@ -4,46 +4,35 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import net.assignment.database.SafeLoginDAO;
-
-// Extend HttpServlet class to create Http Servlet
-//@WebServlet("/safeLogin")
+import net.assignment.bean.*;
+import net.assignment.database.*;
 
 public class SafeLoginServlet extends HttpServlet {
+	
+	private SafeLoginDAO safeLoginDAO; 
+	
+	public void init() {
+		safeLoginDAO = new SafeLoginDAO();
+	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		
-		response.setContentType("text/html"); 
-		PrintWriter out = response.getWriter();
-		
-		String username = request.getParameter("uname");
-		String password = request.getParameter("psw");
-		
-		if(SafeLoginDAO.validate(username, password)) {
-			RequestDispatcher rd = request.getRequestDispatcher("servlet2");
-			rd.forward(request,response);
-		}
-		
-		else {
-			out.print("Please check your credentials");
-			RequestDispatcher rd = request.getRequestDispatcher("index.html");
-			rd.include(request,response);
-		}
-		
-		out.close();
-	}
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		LoginBean loginBean = new LoginBean();
+		loginBean.setUsername(username);
+		loginBean.setPassword(password);
 	
-	/*public void doGet(HttpServletRequest request, 
-      HttpServletResponse response)
-      throws ServletException, IOException 
-   {
-
-      // Setting up the content type of webpage
-      response.setContentType("text/html");
-
-      // Writing message to the web page
-      PrintWriter out = response.getWriter();
-      out.println("<html></html>");
-   } */
+	try {
+		if(SafeLoginDAO.validate(loginBean)) {
+			response.sendRedirect("loginsuccess.jsp");
+	} 	else {
+			response.sendRedirect("loginfail.jsp");
+		
+		}
+	} 	catch (ClassNotFoundException e) {
+			e.printStackTrace();
+	}
+}
 }

@@ -3,6 +3,8 @@ package net.assignment.database;
 import java.sql.*;
 import net.assignment.bean.*;
 
+// To make this login unsafe, we use simple queries instead of prepared statements with parameterized queries. 
+
 public class UnsafeLoginDAO {
 	
 	public static boolean validate(LoginBean loginBean) throws ClassNotFoundException {
@@ -13,45 +15,27 @@ public class UnsafeLoginDAO {
 		
 		try (
 				Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=assignment4","assignment","assignment")) {
-				PreparedStatement ps = con.prepareStatement(
-					"select * from dbo.users where username=? and password=?"); {
-			ps.setString(1, loginBean.getUsername());
-			ps.setString(2, loginBean.getPassword());
 			
-			System.out.println(ps);
-			ResultSet rs = ps.executeQuery();
-			status = rs.next();
-			while ( rs.next() ) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                System.out.println(username);
-                System.out.println(password);
-            }
+				Statement statement = con.createStatement();
+			
+				String username = loginBean.getUsername();
+				String password = loginBean.getPassword();
+				
+				String query = "select * from dbo.users where username='" + username + "' and password='" + password + "'"; {
+					//query.setString(1, loginBean.getUsername());
+					//query.setString(2, loginBean.getPassword());
+				System.out.println(query);
+				
+				ResultSet rs = statement.executeQuery(query);
+				status = rs.next();
 	}
 				}
-		catch (SQLException e) {
+		catch (Exception e) {
 			
-			//printSQLException(e);
+			System.out.println(e);
 		}
 		
 		return status;
 
 	}
-	
-	 private void printSQLException(SQLException ex) {	 
-	        for (Throwable e: ex) {
-	            if (e instanceof SQLException) {
-	            	
-	                e.printStackTrace(System.err);
-	                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-	                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-	                System.err.println("Message: " + e.getMessage());
-	                Throwable t = ex.getCause();
-	                while (t != null) {
-	                    System.out.println("Cause: " + t);
-	                    t = t.getCause();
-	                }
-	            }
-	        }
-	    }
-	}
+}
